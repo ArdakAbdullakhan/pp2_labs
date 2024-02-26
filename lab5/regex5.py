@@ -1,4 +1,4 @@
 import re
 
 txt = "amdivmivmdib"
-print(re.search("r'a.*b$'"))
+print(re.search(r'a.*b$', txt))
