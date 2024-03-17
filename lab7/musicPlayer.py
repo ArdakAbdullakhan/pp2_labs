@@ -25,6 +25,7 @@ def next_song():
     global current_song_index
     current_song_index = (current_song_index + 1) % len(_songs)
     pygame.mixer.music.load(_songs[current_song_index])
+    pygame.mixer.music.play()
 
 def previous_song():
     global current_song_index
