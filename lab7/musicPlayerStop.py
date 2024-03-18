@@ -6,7 +6,7 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("SPATIPHAY")
 
-bg_image = pygame.image.load(r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\photo_2024-03-18_21-49-39.jpg')
+bg_image = pygame.image.load(r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\g3IzU4-1019432547.jpg')
 icon = pygame.image.load(r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\Spotify-Emblem-1498407971.png')
 pygame.display.set_icon(icon)
 
@@ -20,7 +20,7 @@ _songs = [
 ]
 current_song_index = 0
 pygame.mixer.music.load(_songs[current_song_index])
-pygame.mixer.music.play()
+
 
 def next_song():
     global current_song_index
@@ -48,9 +48,9 @@ while running:
                 running = False
             if event.key == pygame.K_SPACE:
                 if pygame.mixer.music.get_busy():
-                    pygame.mixer.music.pause() 
+                    pygame.mixer.music.stop() 
                 else:
-                    pygame.mixer.music.unpause()
+                    pygame.mixer.music.play()
                     
             elif event.key == pygame.K_RIGHT:
                 next_song()
