@@ -9,7 +9,7 @@ x = 400
 y = 400
 speed = 20
 
-circle_color = (0, 150, 0)
+circle_color = (255,0, 0)
 circle_position = (x, y)
 circle_radius = 25
 
