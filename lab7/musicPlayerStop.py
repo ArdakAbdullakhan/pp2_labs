@@ -6,17 +6,17 @@ clock = pygame.time.Clock()
 screen = pygame.display.set_mode((800, 800))
 pygame.display.set_caption("SPATIPHAY")
 
-bg_image = pygame.image.load(r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\g3IzU4-1019432547.jpg')
-icon = pygame.image.load(r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\Spotify-Emblem-1498407971.png')
+bg_image = pygame.image.load('music/g3IzU4-1019432547.jpg')
+icon = pygame.image.load('music/Spotify-Emblem-1498407971.png')
 pygame.display.set_icon(icon)
 
 _songs = [
-    r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\01 Foreword.mp3',
-    r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\02 Where This Flower Blooms.mp3',
-    r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\08 Boredom.mp3',
-    r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\We Find Love.mp3',
-    r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\Hold Me Down.mp3',
-    r'C:\Users\User\Desktop\univer\2nd_sem\pp2_lab\lab7\music\Loose.mp3'
+    'music/01 Foreword.mp3',
+    'music/02 Where This Flower Blooms.mp3',
+    'music/08 Boredom.mp3',
+    'music/We Find Love.mp3',
+    'music/Hold Me Down.mp3',
+    'music/Loose.mp3'
 ]
 current_song_index = 0
 pygame.mixer.music.load(_songs[current_song_index])
