@@ -10,7 +10,6 @@ y = 400
 speed = 20
 
 circle_color = (255,0, 0)
-circle_position = (x, y)
 circle_radius = 25
 
 running = True
@@ -26,13 +25,13 @@ while running:
 
     pressed_keys = pygame.key.get_pressed()
 
-    if pressed_keys[pygame.K_UP] and y-25>0:
+    if pressed_keys[pygame.K_UP] and y>circle_radius:
         y -= speed
-    if pressed_keys[pygame.K_DOWN] and y+25<800:
+    if pressed_keys[pygame.K_DOWN] and y<800-circle_radius:
         y += speed
-    if pressed_keys[pygame.K_LEFT] and x-25>0:
+    if pressed_keys[pygame.K_LEFT] and x>circle_radius:
         x -= speed
-    if pressed_keys[pygame.K_RIGHT] and x+25<800:
+    if pressed_keys[pygame.K_RIGHT] and x<800-circle_radius:
         x += speed
 
     #x = max(25, min(x, screen.get_width() - 25))
