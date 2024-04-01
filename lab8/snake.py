@@ -10,7 +10,6 @@ class Fruit:
     def draw_fruit(self):
         fruit_rect = pygame.Rect(int(self.pos.x * cell_size), int(self.pos.y * cell_size), cell_size, cell_size)
         screen.blit(sized_apple, fruit_rect)
-        #pygame.draw.rect(screen,(126,166,114),fruit_rect)
     #randomly placing apple
     def randomize(self):
         self.x = random.randint(0,cell_number-1)
@@ -30,7 +29,7 @@ class Snake:
             x_pos = int(block.x * cell_size)
             y_pos = int(block.y * cell_size)
             block_rect = pygame.Rect(x_pos, y_pos, cell_size, cell_size)
-            pygame.draw.rect(screen,(183,111,122),block_rect)
+            pygame.draw.rect(screen,(51,51,255),block_rect)
     #method for moving snake
     def move_snake(self):
         if self.new_block == True:#if we need new block
@@ -138,8 +137,9 @@ class Main:
 
 pygame.init()
 cell_size = 40
-cell_number = 20
+cell_number = 25
 screen = pygame.display.set_mode((cell_number*cell_size, cell_number*cell_size))#getting screen size 
+pygame.display.set_caption('Snake Game')
 fps = pygame.time.Clock()#frames per second
 apple = pygame.image.load('images/snake_apple.png').convert_alpha()#getting apple image
 sized_apple = pygame.transform.scale(apple, (40, 40))#resizing it to the size of the cell
