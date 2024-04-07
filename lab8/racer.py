@@ -106,7 +106,7 @@ while running:
 
         # Move player left or right
         pressed_keys = pygame.key.get_pressed()
-        if pressed_keys[pygame.K_LEFT] and player.rect.center[0] > 0:
+        if pressed_keys[pygame.K_LEFT] and player.rect.center[0] > 20:
             player.rect.x -= 30
         if pressed_keys[pygame.K_RIGHT] and player.rect.center[0] < 380:
             player.rect.x += 30
