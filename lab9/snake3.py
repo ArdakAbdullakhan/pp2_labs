@@ -119,7 +119,6 @@ class Main:
         if self.banana.pos == self.snake.body[0]:
             self.fruit_type = 'banana'
             self.banana.randomize()
-            self.snake.add_block()
             self.snake.add_block() 
             self.fruits_eaten += 2
             if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
@@ -129,8 +128,6 @@ class Main:
         if self.peach.pos == self.snake.body[0]:
             self.fruit_type = 'peach'
             self.peach.randomize()
-            self.snake.add_block()
-            self.snake.add_block() # Add two more blocks
             self.snake.add_block()
             self.fruits_eaten += 4
             if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
