@@ -117,7 +117,7 @@ class Main:
             if self.fruits_eaten // 6 > 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
                 self.level += 1#making game faster
-                self.fruits_eaten = 0
+                self.fruits_eaten = self.fruits_eaten%6
         # Collision with Banana
         if self.banana.pos == self.snake.body[0]:
             self.banana.randomize()
@@ -127,7 +127,7 @@ class Main:
             if self.fruits_eaten // 6 > 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
                 self.level += 1#making game faster
-                self.fruits_eaten = 0
+                self.fruits_eaten = self.fruits_eaten%6
         # Collision with Peach
         if self.peach.pos == self.snake.body[0]:
             self.peach.randomize()
@@ -137,7 +137,7 @@ class Main:
             if self.fruits_eaten // 6 > 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
                 self.level += 1#making game faster
-                self.fruits_eaten = 0
+                self.fruits_eaten = self.fruits_eaten%6
     def decrease_timer_interval(self):
         self.timer_interval -= 15
         pygame.time.set_timer(SCREEN_UPDATE, self.timer_interval)#increasing speed of game
