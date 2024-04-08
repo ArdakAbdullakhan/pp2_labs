@@ -25,14 +25,14 @@ def draw_menu(size, color):
     pygame.draw.circle(screen, 'white', (165,45),10)
     rect_brush = pygame.draw.rect(screen, 'black', [200,20,50,50])#rectangle brush
     pygame.draw.rect(screen, 'white', [210,35,30,20])
-    square_brush = pygame.draw.rect(screen, 'black', [260,20,50,50])#rectangle brush
+    square_brush = pygame.draw.rect(screen, 'black', [260,20,50,50])#square brush
     pygame.draw.rect(screen, 'white', [270,30,30,30])
-    triangle_brush = pygame.draw.rect(screen, 'black', [320,20,50,50])#rectangle brush
+    triangle_brush = pygame.draw.rect(screen, 'black', [320,20,50,50])#right triangle brush
     pygame.draw.polygon(screen, 'white', [(330,30),(360,30), (360,60)])
-    eq_triangle_brush = pygame.draw.rect(screen, 'black', [380,20,50,50])
+    eq_triangle_brush = pygame.draw.rect(screen, 'black', [380,20,50,50])#eq triangle brush
     vertices = [(405,30), (390,60), (420, 60)]
     pygame.draw.polygon(screen, 'white', vertices)
-    rhombus_brush = pygame.draw.rect(screen, 'black', [440,20,50,50])
+    rhombus_brush = pygame.draw.rect(screen, 'black', [440,20,50,50])#rhombus brush
     pygame.draw.polygon(screen, 'white', [(465,30),(450,45),(465,60),(480,45)])
     brush_list = [big_brush, medium_brush, small_brush, rect_brush, square_brush, triangle_brush, eq_triangle_brush, rhombus_brush]
     if size == 20:#showing which brush is chosen

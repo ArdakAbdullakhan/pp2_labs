@@ -15,8 +15,8 @@ class Fruit:
         self.x = random.randint(0,cell_number-1)
         self.y = random.randint(0,cell_number-1)
         self.pos = Vector2(self.x,self.y)
-
-class Banana:
+#announcing banana class
+class Banana:#same with fruit
     def __init__(self):
         self.randomize()
 
@@ -28,8 +28,8 @@ class Banana:
         self.x = random.randint(0, cell_number - 1)
         self.y = random.randint(0, cell_number - 1)
         self.pos = Vector2(self.x, self.y)
-
-class Peach:
+#announcing peach class
+class Peach:#same with fruit
     def __init__(self):
         self.randomize()
 
@@ -41,7 +41,7 @@ class Peach:
         self.x = random.randint(0, cell_number - 1)
         self.y = random.randint(0, cell_number - 1)
         self.pos = Vector2(self.x, self.y)
-
+#announcing snake class
 class Snake:
     #initialization
     def __init__(self):
@@ -71,73 +71,74 @@ class Snake:
     #method for adding block in the back
     def add_block(self):
         self.new_block = True
+#main game
 class Main:
     def __init__(self):
-        self.snake = Snake()
-        self.fruit = Fruit()
+        self.snake = Snake()#add snake
+        self.fruit = Fruit()#add fruit
         self.banana = Banana()  # Add Banana instance
         self.peach = Peach()    # Add Peach instance
-        self.fruits_eaten = 0
-        self.timer_interval = 150
-        self.level = 1
+        self.fruits_eaten = 0#number of eaten fruits
+        self.timer_interval = 150#speed of the game
+        self.level = 1#level of the game
         self.fruit_disappear_time = pygame.time.get_ticks()  # Initialize fruit disappear time
         self.fruit_disappear_interval = 6000  # Set the interval for fruit disappearance (in milliseconds)
 
     def update(self):
-        self.snake.move_snake()
-        self.check_collision()
-        self.check_fail()
-        self.manage_fruit_disappearance()
+        self.snake.move_snake()#moving snake
+        self.check_collision()#check collision with apple, banana, peach
+        self.check_fail()#check if snake exits the screen
+        self.manage_fruit_disappearance()#disappearance and appearance of fruits
 
     def manage_fruit_disappearance(self):
         current_time = pygame.time.get_ticks()
         if current_time - self.fruit_disappear_time >= self.fruit_disappear_interval:
-            self.fruit.randomize()
-            self.banana.randomize()
-            self.peach.randomize()  # Randomize the position of the fruit
+            self.fruit.randomize()#placing apple
+            self.banana.randomize()#placing banana
+            self.peach.randomize()  # Randomize the position of the peach
             self.fruit_disappear_time = current_time  # Update the last disappearance time
 
     def draw_elements(self):
-        self.draw_grass()
-        self.fruit.draw_fruit()
-        self.banana.draw_banana()  # Draw Banana
-        self.peach.draw_peach()    # Draw Peach
-        self.snake.draw_snake()
-        self.draw_score()
-        self.draw_level()
+        self.draw_grass()#drawing grass, playing ground
+        self.fruit.draw_fruit()#drawing apple
+        self.banana.draw_banana()# Draw Banana
+        self.peach.draw_peach() # Draw Peach
+        self.snake.draw_snake() #draw snake
+        self.draw_score()#draw scores on the screen
+        self.draw_level()#drawing level on the screen
 
     def check_collision(self):
         if self.fruit.pos == self.snake.body[0]:
             self.fruit_type = 'apple'
             self.fruit.randomize()
-            self.snake.add_block()
-            self.fruits_eaten += 1
+            self.snake.add_block()#adding block to snake
+            self.fruits_eaten += 1#fruits eaten
             if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
-                self.level += 1
+                self.level += 1#making game faster
         # Collision with Banana
         if self.banana.pos == self.snake.body[0]:
             self.fruit_type = 'banana'
             self.banana.randomize()
-            self.snake.add_block() 
-            self.fruits_eaten += 2
+            self.snake.add_block()#adding block to snake
+            self.fruits_eaten += 2#fruits eaten
             if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
-                self.level += 1
+                self.level += 1#making game faster
         # Collision with Peach
         if self.peach.pos == self.snake.body[0]:
             self.fruit_type = 'peach'
             self.peach.randomize()
-            self.snake.add_block()
-            self.fruits_eaten += 4
+            self.snake.add_block()#adding block to snake
+            self.fruits_eaten += 4#fruits eaten
             if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
-                self.level += 1
+                self.level += 1#making game faster
     def decrease_timer_interval(self):
         self.timer_interval -= 15
-        pygame.time.set_timer(SCREEN_UPDATE, self.timer_interval)
+        pygame.time.set_timer(SCREEN_UPDATE, self.timer_interval)#increasing speed of game
 
-    def check_fail(self):
+    def check_fail(self):#if sanke exits the screen
         if not 0 <= self.snake.body[0].x < cell_number or not 0 <= self.snake.body[0].y < cell_number:
             self.game_over()
 
@@ -150,7 +151,7 @@ class Main:
         pygame.quit()
         sys.exit()
 
-    def draw_grass(self):
+    def draw_grass(self):#drawing grass 
         grass_color = (167, 209, 61)
         for row in range(cell_number):
             if row % 2 == 0:
@@ -164,7 +165,7 @@ class Main:
                         grass_rect = pygame.Rect(column * cell_size, row * cell_size, cell_size, cell_size)
                         pygame.draw.rect(screen, grass_color, grass_rect)
 
-    def draw_score(self):
+    def draw_score(self):#drawing score on screen
         score_text = str(self.fruits_eaten)
         score_surface = game_font.render(score_text, True, (56, 74, 12))
         score_x = int(cell_size * cell_number - 60)
@@ -174,7 +175,7 @@ class Main:
         screen.blit(score_surface, score_rect)
         screen.blit(sized_apple, apple_rect)
 
-    def draw_level(self):
+    def draw_level(self):#drawing level on screen
         level_text = 'Level: ' + str(self.level)
         level_surface = game_font.render(level_text, True, (56, 74, 12))
         level_x = int(cell_size * cell_number - 60)
