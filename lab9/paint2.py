@@ -13,26 +13,35 @@ active_color = 'white'#transparent
 screen = pygame.display.set_mode((width, height))
 pygame.display.set_caption('Paint program')
 painting = []#drawn paintings
+font = pygame.font.SysFont("Verdana", 10)
 
 def draw_menu(size, color):
     pygame.draw.rect(screen, (224,224,224), [0,0,width, 100])#drawing menu
     pygame.draw.line(screen, 'black', (0,100), (width, 100), 2)
     big_brush = pygame.draw.rect(screen, 'black', [20,20,50,50])#brush sizes
+    pygame.draw.rect(screen, 'darkgrey', [17,17,56,56],3)#ramka
     pygame.draw.circle(screen, 'white', (45,45),20)
     medium_brush = pygame.draw.rect(screen, 'black', [80,20,50,50])
+    pygame.draw.rect(screen, 'darkgrey', [77,17,56,56],3)
     pygame.draw.circle(screen, 'white', (105,45),15)
     small_brush = pygame.draw.rect(screen, 'black', [140,20,50,50])
+    pygame.draw.rect(screen, 'darkgrey', [137,17,56,56],3)
     pygame.draw.circle(screen, 'white', (165,45),10)
     rect_brush = pygame.draw.rect(screen, 'black', [200,20,50,50])#rectangle brush
     pygame.draw.rect(screen, 'white', [210,35,30,20])
+    pygame.draw.rect(screen, 'darkgrey', [197,17,56,56],3)
     square_brush = pygame.draw.rect(screen, 'black', [260,20,50,50])#square brush
+    pygame.draw.rect(screen, 'darkgrey', [257,17,56,56],3)
     pygame.draw.rect(screen, 'white', [270,30,30,30])
     triangle_brush = pygame.draw.rect(screen, 'black', [320,20,50,50])#right triangle brush
+    pygame.draw.rect(screen, 'darkgrey', [317,17,56,56],3)
     pygame.draw.polygon(screen, 'white', [(330,30),(360,30), (360,60)])
     eq_triangle_brush = pygame.draw.rect(screen, 'black', [380,20,50,50])#eq triangle brush
+    pygame.draw.rect(screen, 'darkgrey', [377,17,56,56],3)
     vertices = [(405,30), (390,60), (420, 60)]
     pygame.draw.polygon(screen, 'white', vertices)
     rhombus_brush = pygame.draw.rect(screen, 'black', [440,20,50,50])#rhombus brush
+    pygame.draw.rect(screen, 'darkgrey', [437,17,56,56],3)
     pygame.draw.polygon(screen, 'white', [(465,30),(450,45),(465,60),(480,45)])
     brush_list = [big_brush, medium_brush, small_brush, rect_brush, square_brush, triangle_brush, eq_triangle_brush, rhombus_brush]
     if size == 20:#showing which brush is chosen
@@ -126,6 +135,18 @@ while running:
     draw_painting(painting)
 
     brushes, colors, rgb = draw_menu(active_brush, active_color) 
+
+    brushes_list = font.render('Brushes List',True, 'black')
+    screen.blit(brushes_list, (20,80))
+
+    color_list = font.render('Colors List', True, 'black')
+    screen.blit(color_list,(720,80))
+
+    eraserr = font.render('Eraser', True, 'black')
+    screen.blit(eraserr,(665,50))
+
+    used_color = font.render('Used Color', True, 'black')
+    screen.blit(used_color, (600,80))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:#for closing game
