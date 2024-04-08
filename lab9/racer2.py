@@ -159,7 +159,7 @@ while True:
         all_sprites.add(new_coin)
         COIN_SCORE += new_coin.score
         if COIN_SCORE % 10 == 0:
-            SPEED += 0.5
+            SPEED += 1
  
     #To be run if collision occurs between Player and Enemy
     if pygame.sprite.spritecollideany(P1, enemies):

@@ -165,7 +165,7 @@ while True:
         coins2.add(new_coin)
         all_sprites.add(new_coin)
         if COIN_SCORE%10==0 and COIN_SCORE !=0:
-            SPEED+=0.5
+            SPEED+=1
     
 
     #To be run if collision occurs between Player and Enemy
