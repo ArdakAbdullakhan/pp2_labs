@@ -45,12 +45,12 @@ def insert_snakegame(user_name, score, level):
         print(error)
 
 def get_data():
-    """ Retrieve data from the vendors table """
+    """ Retrieve data from the snakegame table """
     config  = load_config()
     try:
         with psycopg2.connect(**config) as conn:
             with conn.cursor() as cur:
-                cur.execute("SELECT user_name, score, level FROM SnakeGame ORDER BY user_name")
+                cur.execute("SELECT user_name, score, level FROM SnakeGame ORDER BY score")
                 rows = cur.fetchall()
 
                 print("The number of users: ", cur.rowcount)
@@ -141,6 +141,7 @@ class Main:
         self.banana = Banana()  # Add Banana instance
         self.peach = Peach()    # Add Peach instance
         self.fruits_eaten = 0#number of eaten fruits
+        self.score = 0
         self.timer_interval = 150#speed of the game
         self.level = 1#level of the game
         self.fruit_disappear_time = pygame.time.get_ticks()  # Initialize fruit disappear time
@@ -174,25 +175,31 @@ class Main:
             self.fruit.randomize()
             self.snake.add_block()#adding block to snake
             self.fruits_eaten += 1#fruits eaten
-            if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
+            self.score+=1
+            if self.fruits_eaten // 6 > 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
                 self.level += 1#making game faster
+                self.fruits_eaten = 0
         # Collision with Banana
         if self.banana.pos == self.snake.body[0]:
             self.banana.randomize()
             self.snake.add_block()#adding block to snake
             self.fruits_eaten += 2#fruits eaten
-            if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
+            self.score+=2
+            if self.fruits_eaten // 6 > 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
                 self.level += 1#making game faster
+                self.fruits_eaten = 0
         # Collision with Peach
         if self.peach.pos == self.snake.body[0]:
             self.peach.randomize()
             self.snake.add_block()#adding block to snake
             self.fruits_eaten += 4#fruits eaten
-            if self.fruits_eaten % 4 == 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
+            self.score+=4
+            if self.fruits_eaten // 6 > 0 and self.fruits_eaten != 0 and self.timer_interval >= 45:
                 self.decrease_timer_interval()
                 self.level += 1#making game faster
+                self.fruits_eaten = 0
     def decrease_timer_interval(self):
         self.timer_interval -= 15
         pygame.time.set_timer(SCREEN_UPDATE, self.timer_interval)#increasing speed of game
@@ -207,15 +214,15 @@ class Main:
 
     def game_over(self):
         time.sleep(1.2)
-        insert_snakegame(self.user_name, self.fruits_eaten, self.level)
+        insert_snakegame(self.user_name, self.score, self.level)
         get_data()
         pygame.quit()
         sys.exit()
     
     def pause_game(self):
         print("Game Paused")
-        insert_snakegame(self.user_name, self.fruits_eaten, self.level)
-        print(f"Current score: {self.fruits_eaten}, Current level: {self.level}")
+        insert_snakegame(self.user_name, self.score, self.level)
+        print(f"Current score: {self.score}, Current level: {self.level}")
 
     def draw_grass(self):#drawing grass 
         grass_color = (167, 209, 61)
@@ -232,7 +239,7 @@ class Main:
                         pygame.draw.rect(screen, grass_color, grass_rect)
 
     def draw_score(self):#drawing score on screen
-        score_text = str(self.fruits_eaten)
+        score_text = str(self.score)
         score_surface = game_font.render(score_text, True, (56, 74, 12))
         score_x = int(cell_size * cell_number - 60)
         score_y = int(cell_size * cell_number - 40)
