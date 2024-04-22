@@ -300,17 +300,19 @@ def delete_data(name_or_phone):
 # Retrieve data from the Phonebook table based on phone number
 #get_data_phonenum(str(input()))
 
+#get_data_by_exact_phonenumber(str(input()))
+
 #Inserting or updating data using stored procedure
 #insert_or_update(str(input()), str(input()))
 
 # Inserting or updating many users using stored procedure
-#users_data = ['John Doe,+77789563482', 'Fermen Clencharlie,+77475963768', 'Charlie Gordon,+77071235326']
+#users_data = ['John Boe,+77789563482', 'Fermen Clenchar,+77475963768', 'Char Gordon,+77071235326']
 #insert_many_users(users_data)
 
 #Querying data with limit and offset
 #query_with_pagination(int(input()), int(input()))
 
 #Deleting user based on username and phonebook
-#delete_data(str(input()))
+delete_data(str(input()))
 
 #get_data()
