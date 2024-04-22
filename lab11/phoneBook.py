@@ -313,6 +313,6 @@ def delete_data(name_or_phone):
 #query_with_pagination(int(input()), int(input()))
 
 #Deleting user based on username and phonebook
-delete_data(str(input()))
+#delete_data(str(input()))
 
 #get_data()
